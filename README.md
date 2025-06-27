@@ -1,7 +1,6 @@
-# Tauri + React + Typescript
+# Arcwork
+## A simple, local and intuitive way to manage your codebases.
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+Similar to Notion except tightly integrated with your code on your local machine.
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+For an old version of this same idea, take a look at https://github.com/juaneth/Avon
