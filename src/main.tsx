@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { ClerkProvider } from "@clerk/clerk-react";
+import { ClerkProvider, SignIn } from "@clerk/clerk-react";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import { createBrowserRouter, RouterProvider } from "react-router";
 
@@ -11,6 +12,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+    ],
   },
 ]);
 
@@ -22,6 +29,8 @@ if (!PUBLISHABLE_KEY) {
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
-    <RouterProvider router={router} />
+    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </ClerkProvider>
 );
