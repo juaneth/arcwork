@@ -1,4 +1,5 @@
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Link } from "react-router";
 
 import * as React from "react";
 import { ChevronsUpDown, Plus } from "lucide-react";
@@ -26,16 +27,29 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+
+import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/clerk-react";
+
 // Menu items.
 const items = [
   {
-    title: "Project1",
-    url: "#",
+    title: "Home",
+    url: "/",
     icon: Home,
   },
 ];
 
 export function AppSidebar() {
+  const { state } = useSidebar();
   return (
     <Sidebar variant='floating' collapsible='icon' className='pt-10'>
       <SidebarContent>
@@ -51,10 +65,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -62,6 +76,29 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      {/* Settings Button at the bottom */}
+      <div className='flex flex-col items-center justify-end w-full pb-2  mt-auto'>
+        {state === "collapsed" ? (
+          <Link
+            to='/settings'
+            className='flex items-center justify-center w-8 h-8 rounded-full hover:bg-sidebar-accent focus:outline-none'
+          >
+            <Settings className='size-4' />
+            <span className='sr-only'>Open settings</span>
+          </Link>
+        ) : (
+          <div className='flex flex-row items-center justify-end w-full gap-2 px-2'>
+            <UserButton afterSignOutUrl='/signin' />
+            <Link
+              to='/settings'
+              className='flex items-center justify-center w-8 h-8 rounded-full hover:bg-sidebar-accent focus:outline-none ml-auto'
+            >
+              <Settings className='size-4' />
+              <span className='sr-only'>Open settings</span>
+            </Link>
+          </div>
+        )}
+      </div>
     </Sidebar>
   );
 }
