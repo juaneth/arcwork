@@ -8,6 +8,10 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 import App from "./App";
 
+import { SidebarProvider } from "./components/ui/sidebar";
+import Titlebar from "./components/titleBar";
+import { AppSidebar } from "./components/ui/app-sidebar";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +34,13 @@ if (!PUBLISHABLE_KEY) {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <RouterProvider router={router} />
+      <main className='flex bg-background relative text-foreground h-screen mt-8'>
+        <SidebarProvider>
+          <Titlebar></Titlebar>
+          <AppSidebar />
+          <RouterProvider router={router} />
+        </SidebarProvider>
+      </main>
     </ThemeProvider>
   </ClerkProvider>
 );
