@@ -26,14 +26,14 @@ function SignIn() {
   }, [user]);
 
   return (
-    <div className='flex flex-row w-full h-screen justify-center items-center bg-background text-foreground p-2 sm:p-8'>
+    <div className='flex flex-row w-full h-full justify-center items-center bg-background text-foreground p-2 sm:p-8'>
       <img
         alt='Arcwork'
         src={theme == "dark" ? "/Cover.jpg" : "/Cover-light.jpg"}
         className='absolute top-0 left-0 w-full h-full object-cover opacity-60 dark:opacity-20 dark:blur-3xl blur-2xl'
       />
       <div className='shadow-sm h-96 relative overflow-hidden rounded-lg rounded-r-none border border-r-0 dark:border-r-1 gap-1 flex flex-col'>
-        <div className='z-10 shadow-md flex flex-col gap-1 p-8 w-full h-full'>
+        <div className='z-10  flex flex-col gap-1 p-8 w-full h-full'>
           <h1 className='tracking-tighter text-4xl font-semibold'>
             Welcome to Arcwork.
           </h1>
