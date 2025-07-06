@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { ClerkProvider } from "@clerk/clerk-react";
+import { ClerkProvider, useUser } from "@clerk/clerk-react";
 import { ThemeProvider } from "@/components/theme-provider";
 
-import { createBrowserRouter, RouterProvider } from "react-router";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router";
 
 import App from "./App";
 import Home from "./pages/Home";

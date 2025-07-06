@@ -37,7 +37,7 @@ import {
 } from "@/components/ui/sheet";
 
 import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/clerk-react";
+import { UserButton, useUser } from "@clerk/clerk-react";
 
 // Menu items.
 const items = [
@@ -50,6 +50,14 @@ const items = [
 
 export function AppSidebar() {
   const { state } = useSidebar();
+
+  const { user } = useUser();
+  console.log(user);
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <Sidebar variant='floating' collapsible='icon' className='pt-10'>
       <SidebarContent>
